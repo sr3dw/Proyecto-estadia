@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BDDistribucionDeCargasHorariasModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BDDistribucionDeCargasHorariasEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="BDDistribucionDeCargasHorariasModel.sysdiagrams" />
+    <EntitySet Name="tblActividades" EntityType="BDDistribucionDeCargasHorariasModel.tblActividades" />
+    <EntitySet Name="tblAtividadesDetalles" EntityType="BDDistribucionDeCargasHorariasModel.tblAtividadesDetalles" />
+    <EntitySet Name="tblDias" EntityType="BDDistribucionDeCargasHorariasModel.tblDias" />
+    <EntitySet Name="tblProgramarActividad" EntityType="BDDistribucionDeCargasHorariasModel.tblProgramarActividad" />
+    <EntitySet Name="tblUsuarios" EntityType="BDDistribucionDeCargasHorariasModel.tblUsuarios" />
+    <EntitySet Name="tblUsuariosDetalle" EntityType="BDDistribucionDeCargasHorariasModel.tblUsuariosDetalle" />
+    <AssociationSet Name="fk2PA" Association="BDDistribucionDeCargasHorariasModel.fk2PA">
+      <End Role="tblActividades" EntitySet="tblActividades" />
+      <End Role="tblProgramarActividad" EntitySet="tblProgramarActividad" />
+    </AssociationSet>
+    <AssociationSet Name="fk1AD" Association="BDDistribucionDeCargasHorariasModel.fk1AD">
+      <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+      <End Role="tblAtividadesDetalles" EntitySet="tblAtividadesDetalles" />
+    </AssociationSet>
+    <AssociationSet Name="fk2AD" Association="BDDistribucionDeCargasHorariasModel.fk2AD">
+      <End Role="tblDias" EntitySet="tblDias" />
+      <End Role="tblAtividadesDetalles" EntitySet="tblAtividadesDetalles" />
+    </AssociationSet>
+    <AssociationSet Name="fk3PA" Association="BDDistribucionDeCargasHorariasModel.fk3PA">
+      <End Role="tblDias" EntitySet="tblDias" />
+      <End Role="tblProgramarActividad" EntitySet="tblProgramarActividad" />
+    </AssociationSet>
+    <AssociationSet Name="fk1PA" Association="BDDistribucionDeCargasHorariasModel.fk1PA">
+      <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+      <End Role="tblProgramarActividad" EntitySet="tblProgramarActividad" />
+    </AssociationSet>
+    <AssociationSet Name="fk1UD" Association="BDDistribucionDeCargasHorariasModel.fk1UD">
+      <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+      <End Role="tblUsuariosDetalle" EntitySet="tblUsuariosDetalle" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BDDistribucionDeCargasHorariasModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BDDistribucionDeCargasHorariasModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="spInsertUsuarios">
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="pass" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spLogin" ReturnType="Collection(Int32)">
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="pass" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblActividades">
+    <Key>
+      <PropertyRef Name="idActividad" />
+    </Key>
+    <Property Name="idActividad" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="vchActividad" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="vchActDescripcion" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="tblProgramarActividad" Relationship="BDDistribucionDeCargasHorariasModel.fk2PA" FromRole="tblActividades" ToRole="tblProgramarActividad" />
+  </EntityType>
+  <EntityType Name="tblAtividadesDetalles">
+    <Key>
+      <PropertyRef Name="idAD" />
+    </Key>
+    <Property Name="idAD" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <Property Name="idDia" Type="Int32" Nullable="false" />
+    <Property Name="tmHoraEntrada" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="tmHoraSalida" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="fltHorasPorDia" Type="Double" Nullable="false" />
+    <NavigationProperty Name="tblUsuarios" Relationship="BDDistribucionDeCargasHorariasModel.fk1AD" FromRole="tblAtividadesDetalles" ToRole="tblUsuarios" />
+    <NavigationProperty Name="tblDias" Relationship="BDDistribucionDeCargasHorariasModel.fk2AD" FromRole="tblAtividadesDetalles" ToRole="tblDias" />
+  </EntityType>
+  <EntityType Name="tblDias">
+    <Key>
+      <PropertyRef Name="idDia" />
+    </Key>
+    <Property Name="idDia" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="vchDia" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="tblAtividadesDetalles" Relationship="BDDistribucionDeCargasHorariasModel.fk2AD" FromRole="tblDias" ToRole="tblAtividadesDetalles" />
+    <NavigationProperty Name="tblProgramarActividad" Relationship="BDDistribucionDeCargasHorariasModel.fk3PA" FromRole="tblDias" ToRole="tblProgramarActividad" />
+  </EntityType>
+  <EntityType Name="tblProgramarActividad">
+    <Key>
+      <PropertyRef Name="idPA" />
+    </Key>
+    <Property Name="idPA" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <Property Name="idActividad" Type="Int32" Nullable="false" />
+    <Property Name="idDia" Type="Int32" Nullable="false" />
+    <Property Name="tmHoraEmpieza" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="tmHoraFinaliza" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="vchSalon" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="fltHorasTrabajadas" Type="Double" Nullable="false" />
+    <NavigationProperty Name="tblActividades" Relationship="BDDistribucionDeCargasHorariasModel.fk2PA" FromRole="tblProgramarActividad" ToRole="tblActividades" />
+    <NavigationProperty Name="tblDias" Relationship="BDDistribucionDeCargasHorariasModel.fk3PA" FromRole="tblProgramarActividad" ToRole="tblDias" />
+    <NavigationProperty Name="tblUsuarios" Relationship="BDDistribucionDeCargasHorariasModel.fk1PA" FromRole="tblProgramarActividad" ToRole="tblUsuarios" />
+  </EntityType>
+  <EntityType Name="tblUsuarios">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="vchEmail" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="vchPass" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="tblAtividadesDetalles" Relationship="BDDistribucionDeCargasHorariasModel.fk1AD" FromRole="tblUsuarios" ToRole="tblAtividadesDetalles" />
+    <NavigationProperty Name="tblProgramarActividad" Relationship="BDDistribucionDeCargasHorariasModel.fk1PA" FromRole="tblUsuarios" ToRole="tblProgramarActividad" />
+    <NavigationProperty Name="tblUsuariosDetalle" Relationship="BDDistribucionDeCargasHorariasModel.fk1UD" FromRole="tblUsuarios" ToRole="tblUsuariosDetalle" />
+  </EntityType>
+  <EntityType Name="tblUsuariosDetalle">
+    <Key>
+      <PropertyRef Name="idUD" />
+    </Key>
+    <Property Name="idUD" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <Property Name="vchCarrera" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="vchPeriodo" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="fltCargaHoraria" Type="Double" Nullable="false" />
+    <NavigationProperty Name="tblUsuarios" Relationship="BDDistribucionDeCargasHorariasModel.fk1UD" FromRole="tblUsuariosDetalle" ToRole="tblUsuarios" />
+  </EntityType>
+  <Association Name="fk2PA">
+    <End Role="tblActividades" Type="BDDistribucionDeCargasHorariasModel.tblActividades" Multiplicity="1" />
+    <End Role="tblProgramarActividad" Type="BDDistribucionDeCargasHorariasModel.tblProgramarActividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblActividades">
+        <PropertyRef Name="idActividad" />
+      </Principal>
+      <Dependent Role="tblProgramarActividad">
+        <PropertyRef Name="idActividad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk1AD">
+    <End Role="tblUsuarios" Type="BDDistribucionDeCargasHorariasModel.tblUsuarios" Multiplicity="1" />
+    <End Role="tblAtividadesDetalles" Type="BDDistribucionDeCargasHorariasModel.tblAtividadesDetalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblAtividadesDetalles">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk2AD">
+    <End Role="tblDias" Type="BDDistribucionDeCargasHorariasModel.tblDias" Multiplicity="1" />
+    <End Role="tblAtividadesDetalles" Type="BDDistribucionDeCargasHorariasModel.tblAtividadesDetalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDias">
+        <PropertyRef Name="idDia" />
+      </Principal>
+      <Dependent Role="tblAtividadesDetalles">
+        <PropertyRef Name="idDia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk3PA">
+    <End Role="tblDias" Type="BDDistribucionDeCargasHorariasModel.tblDias" Multiplicity="1" />
+    <End Role="tblProgramarActividad" Type="BDDistribucionDeCargasHorariasModel.tblProgramarActividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDias">
+        <PropertyRef Name="idDia" />
+      </Principal>
+      <Dependent Role="tblProgramarActividad">
+        <PropertyRef Name="idDia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk1PA">
+    <End Role="tblUsuarios" Type="BDDistribucionDeCargasHorariasModel.tblUsuarios" Multiplicity="1" />
+    <End Role="tblProgramarActividad" Type="BDDistribucionDeCargasHorariasModel.tblProgramarActividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblProgramarActividad">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk1UD">
+    <End Role="tblUsuarios" Type="BDDistribucionDeCargasHorariasModel.tblUsuarios" Multiplicity="1" />
+    <End Role="tblUsuariosDetalle" Type="BDDistribucionDeCargasHorariasModel.tblUsuariosDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblUsuariosDetalle">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BDDistribucionDeCargasHorariasModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BDDistribucionDeCargasHorariasModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="BDDistribucionDeCargasHorariasModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblActividades" EntityType="BDDistribucionDeCargasHorariasModel.Store.tblActividades" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblAtividadesDetalles" EntityType="BDDistribucionDeCargasHorariasModel.Store.tblAtividadesDetalles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblDias" EntityType="BDDistribucionDeCargasHorariasModel.Store.tblDias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblProgramarActividad" EntityType="BDDistribucionDeCargasHorariasModel.Store.tblProgramarActividad" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblUsuarios" EntityType="BDDistribucionDeCargasHorariasModel.Store.tblUsuarios" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblUsuariosDetalle" EntityType="BDDistribucionDeCargasHorariasModel.Store.tblUsuariosDetalle" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="fk1AD" Association="BDDistribucionDeCargasHorariasModel.Store.fk1AD">
+      <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+      <End Role="tblAtividadesDetalles" EntitySet="tblAtividadesDetalles" />
+    </AssociationSet>
+    <AssociationSet Name="fk1PA" Association="BDDistribucionDeCargasHorariasModel.Store.fk1PA">
+      <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+      <End Role="tblProgramarActividad" EntitySet="tblProgramarActividad" />
+    </AssociationSet>
+    <AssociationSet Name="fk1UD" Association="BDDistribucionDeCargasHorariasModel.Store.fk1UD">
+      <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+      <End Role="tblUsuariosDetalle" EntitySet="tblUsuariosDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="fk2AD" Association="BDDistribucionDeCargasHorariasModel.Store.fk2AD">
+      <End Role="tblDias" EntitySet="tblDias" />
+      <End Role="tblAtividadesDetalles" EntitySet="tblAtividadesDetalles" />
+    </AssociationSet>
+    <AssociationSet Name="fk2PA" Association="BDDistribucionDeCargasHorariasModel.Store.fk2PA">
+      <End Role="tblActividades" EntitySet="tblActividades" />
+      <End Role="tblProgramarActividad" EntitySet="tblProgramarActividad" />
+    </AssociationSet>
+    <AssociationSet Name="fk3PA" Association="BDDistribucionDeCargasHorariasModel.Store.fk3PA">
+      <End Role="tblDias" EntitySet="tblDias" />
+      <End Role="tblProgramarActividad" EntitySet="tblProgramarActividad" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblActividades">
+    <Key>
+      <PropertyRef Name="idActividad" />
+    </Key>
+    <Property Name="idActividad" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="vchActividad" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="vchActDescripcion" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblAtividadesDetalles">
+    <Key>
+      <PropertyRef Name="idAD" />
+    </Key>
+    <Property Name="idAD" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+    <Property Name="idDia" Type="int" Nullable="false" />
+    <Property Name="tmHoraEntrada" Type="time" Nullable="false" />
+    <Property Name="tmHoraSalida" Type="time" Nullable="false" />
+    <Property Name="fltHorasPorDia" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblDias">
+    <Key>
+      <PropertyRef Name="idDia" />
+    </Key>
+    <Property Name="idDia" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="vchDia" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblProgramarActividad">
+    <Key>
+      <PropertyRef Name="idPA" />
+    </Key>
+    <Property Name="idPA" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+    <Property Name="idActividad" Type="int" Nullable="false" />
+    <Property Name="idDia" Type="int" Nullable="false" />
+    <Property Name="tmHoraEmpieza" Type="time" Nullable="false" />
+    <Property Name="tmHoraFinaliza" Type="time" Nullable="false" />
+    <Property Name="vchSalon" Type="varchar" MaxLength="50" />
+    <Property Name="fltHorasTrabajadas" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsuarios">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="vchEmail" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="vchPass" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblUsuariosDetalle">
+    <Key>
+      <PropertyRef Name="idUD" />
+    </Key>
+    <Property Name="idUD" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+    <Property Name="vchCarrera" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="vchPeriodo" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="fltCargaHoraria" Type="float" Nullable="false" />
+  </EntityType>
+  <Association Name="fk1AD">
+    <End Role="tblUsuarios" Type="BDDistribucionDeCargasHorariasModel.Store.tblUsuarios" Multiplicity="1" />
+    <End Role="tblAtividadesDetalles" Type="BDDistribucionDeCargasHorariasModel.Store.tblAtividadesDetalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblAtividadesDetalles">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk1PA">
+    <End Role="tblUsuarios" Type="BDDistribucionDeCargasHorariasModel.Store.tblUsuarios" Multiplicity="1" />
+    <End Role="tblProgramarActividad" Type="BDDistribucionDeCargasHorariasModel.Store.tblProgramarActividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblProgramarActividad">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk1UD">
+    <End Role="tblUsuarios" Type="BDDistribucionDeCargasHorariasModel.Store.tblUsuarios" Multiplicity="1" />
+    <End Role="tblUsuariosDetalle" Type="BDDistribucionDeCargasHorariasModel.Store.tblUsuariosDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tblUsuariosDetalle">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk2AD">
+    <End Role="tblDias" Type="BDDistribucionDeCargasHorariasModel.Store.tblDias" Multiplicity="1" />
+    <End Role="tblAtividadesDetalles" Type="BDDistribucionDeCargasHorariasModel.Store.tblAtividadesDetalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDias">
+        <PropertyRef Name="idDia" />
+      </Principal>
+      <Dependent Role="tblAtividadesDetalles">
+        <PropertyRef Name="idDia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk2PA">
+    <End Role="tblActividades" Type="BDDistribucionDeCargasHorariasModel.Store.tblActividades" Multiplicity="1" />
+    <End Role="tblProgramarActividad" Type="BDDistribucionDeCargasHorariasModel.Store.tblProgramarActividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblActividades">
+        <PropertyRef Name="idActividad" />
+      </Principal>
+      <Dependent Role="tblProgramarActividad">
+        <PropertyRef Name="idActividad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk3PA">
+    <End Role="tblDias" Type="BDDistribucionDeCargasHorariasModel.Store.tblDias" Multiplicity="1" />
+    <End Role="tblProgramarActividad" Type="BDDistribucionDeCargasHorariasModel.Store.tblProgramarActividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDias">
+        <PropertyRef Name="idDia" />
+      </Principal>
+      <Dependent Role="tblProgramarActividad">
+        <PropertyRef Name="idDia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spInsertUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="pass" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="pass" Type="varchar" Mode="In" />
+  </Function>
+</Schema>

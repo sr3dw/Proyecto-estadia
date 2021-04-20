@@ -1,0 +1,44 @@
+﻿@model MvcAppConcentracionDeCargaHoraria.tblUsuarios
+
+@{
+    ViewBag.Title = "Login";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+<section id="loginForm">
+<h4>Utilice su correo electronico y su contraseña para iniciar sesión.</h4>
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <form>
+        <div class="form-group">
+            <h3>Formulario de inicio de sesión</h3>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.vchEmail)
+            <br />
+            @Html.TextBoxFor(m => m.vchEmail)
+            <br />
+            @Html.ValidationMessageFor(m => m.vchEmail)
+        </div>
+        <div class="form-group">
+             @Html.LabelFor(m => m.vchPass)
+             <br />
+             @Html.PasswordFor(m => m.vchPass)
+            <br />
+             @Html.ValidationMessageFor(m => m.vchPass)
+            <br />
+        </div>
+        <div class="form-group">
+            <input class="btn btn-outline-success" type="submit" value="Iniciar sesión"/>
+        </div>
+        <div class="form-group">
+            <p>
+                @Html.ActionLink("Registrate", "Registrar") si no tiene ninguna cuenta.
+            </p>
+        </div>
+    </form>
+}
+</section>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a16c569844c64fe7b647f09d9765deca" Name="Diagrama1">
+        <EntityTypeShape EntityType="BDDistribucionDeCargasHorariasModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDDistribucionDeCargasHorariasModel.tblActividades" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDDistribucionDeCargasHorariasModel.tblAtividadesDetalles" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDDistribucionDeCargasHorariasModel.tblDias" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDDistribucionDeCargasHorariasModel.tblProgramarActividad" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDDistribucionDeCargasHorariasModel.tblUsuarios" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDDistribucionDeCargasHorariasModel.tblUsuariosDetalle" Width="1.5" PointX="2.625" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="BDDistribucionDeCargasHorariasModel.fk2PA" ManuallyRouted="false" />
+        <AssociationConnector Association="BDDistribucionDeCargasHorariasModel.fk1AD" ManuallyRouted="false" />
+        <AssociationConnector Association="BDDistribucionDeCargasHorariasModel.fk2AD" ManuallyRouted="false" />
+        <AssociationConnector Association="BDDistribucionDeCargasHorariasModel.fk3PA" ManuallyRouted="false" />
+        <AssociationConnector Association="BDDistribucionDeCargasHorariasModel.fk1PA" ManuallyRouted="false" />
+        <AssociationConnector Association="BDDistribucionDeCargasHorariasModel.fk1UD" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

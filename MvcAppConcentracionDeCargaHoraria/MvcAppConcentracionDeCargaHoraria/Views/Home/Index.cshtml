@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Sistema de concentracion de cargas horarias";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            @*<img src="~/images/UthhhMain.png" alt="MDN" width="170px" height="90px/>*@
+        </div>
+    </section>
+}
+<h3>Para acceder al sistema:</h3>
+<ol class="round">
+    <li>
+        <h5>Login</h5>
+        Use el inicio de secion llenando el formulario, que le pedira su correo electronico institucional y la contraseña previamente establecida.
+        Puede iniciaciar secion aqui. @Html.ActionLink("Iniciar sesión", "Login", "Account")
+    </li>
+    <li>
+        <h5>Registrarse</h5>
+        Si es la primera vez que accecede al sistema primero debe de registrarse, introducira su correo electronico y una contraseña, recuerde que esta la usara para cada vez que acceda al sistema.
+        Puede acceder al formulario de registro aqui. @Html.ActionLink("Registrarse", "Register", "Account")
+    </li>
+</ol>
+<br /><br /><br /><br />
